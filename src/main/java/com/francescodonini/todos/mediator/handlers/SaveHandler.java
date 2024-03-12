@@ -3,7 +3,6 @@ package com.francescodonini.todos.mediator.handlers;
 import java.time.Instant;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.francescodonini.todos.mediator.requests.SaveRequest;
@@ -14,11 +13,14 @@ import com.francescodonini.todos.repositories.TodoItemRepository;
 @Service
 public class SaveHandler implements MediatorHandler<SaveRequest, SaveResponse> {
 	
-	@Autowired
 	private TodoItemRepository todoItemRepository;
 	
-	@Autowired
 	private ModelMapper mapper;
+	
+	public SaveHandler(ModelMapper mapper, TodoItemRepository todoItemRepository) {
+		this.mapper = mapper;
+		this.todoItemRepository = todoItemRepository;
+	}
 
 	@Override
 	public SaveResponse handle(SaveRequest request) {

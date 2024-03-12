@@ -1,7 +1,6 @@
 package com.francescodonini.todos.mediator.handlers;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.francescodonini.todos.mediator.requests.GetSingleRequest;
@@ -12,11 +11,14 @@ import com.francescodonini.todos.repositories.TodoItemRepository;
 @Service
 public class GetSingleHandler implements MediatorHandler<GetSingleRequest, GetSingleResponse> {
 
-	@Autowired
 	private TodoItemRepository todoItemRepository;
 	
-	@Autowired
 	private ModelMapper mapper;
+	
+	public GetSingleHandler(ModelMapper mapper, TodoItemRepository todoItemRepository) {
+		this.mapper = mapper;
+		this.todoItemRepository = todoItemRepository;
+	}
 	
 	@Override
 	public GetSingleResponse handle(GetSingleRequest request) {

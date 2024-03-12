@@ -1,6 +1,5 @@
 package com.francescodonini.todos.mediator.handlers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.francescodonini.todos.mediator.requests.DeleteRequest;
@@ -11,8 +10,11 @@ import com.francescodonini.todos.repositories.TodoItemRepository;
 @Service
 public class DeleteHandler implements MediatorHandler<DeleteRequest, DeleteResponse> {
 	
-	@Autowired
 	private TodoItemRepository todoItemRepository;
+	
+	public DeleteHandler(TodoItemRepository todoItemRepository) {
+		this.todoItemRepository = todoItemRepository;
+	}
 
 	@Override
 	public DeleteResponse handle(DeleteRequest request) {
